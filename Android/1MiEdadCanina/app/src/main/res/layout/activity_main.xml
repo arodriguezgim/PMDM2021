@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="¿Cuántos años tienes?"
+        android:text="@string/pregunta_ppal"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:padding="16dp"
@@ -27,7 +27,7 @@
         android:id="@+id/edad_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Introduce tu edad"
+        android:hint="@string/introdu_edad"
         android:inputType="number"
         android:padding="16dp"
         />
@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Calcular"
+        android:text="@string/btn_calcular"
         />
 
 

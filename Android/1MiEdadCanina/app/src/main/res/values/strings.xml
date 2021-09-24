@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">1-Mi Edad Canina</string>
+    <string name="app_name">Mi Edad Canina</string>
+    <string name="pregunta_ppal">¿Cuántos años tienes?</string>
+    <string name="introdu_edad">Introduce tu edad</string>
+    <string name="btn_calcular">Calcular</string>
+
+    <string name="texto_resultado">Si fueras perro, tu edad sería %d años</string>
+    <string name="msg_toast">No has introducido ningún número.</string>
+
 </resources>
