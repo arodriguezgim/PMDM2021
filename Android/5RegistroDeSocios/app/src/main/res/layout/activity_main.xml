@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_below="@id/divider"
+        android:layout_below="@id/editTextBio"
         android:gravity="center"
         android:textSize="20dp"
         android:text="@string/texto_nivel"
@@ -64,15 +64,18 @@
         android:layout_alignParentBottom="true"
         android:text="@string/guardar" />
 
-
-
-
-
-
-
-
-
-
+    <EditText
+        android:id="@+id/editTextBio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Biografia del socio"
+        android:inputType="textPersonName"
+        android:textSize="24sp" />
 
 
 </RelativeLayout>
