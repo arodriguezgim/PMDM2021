@@ -1,5 +1,9 @@
 package com.alberto.a5_registrodesocios;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -19,11 +23,31 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap fotoSocioTomada;
     private ImageView socioImagen;
 
+
+    // SOLUCIONAMOS EL DEPRECATED DEL ACTIVITYFORRESULT
+    ActivityResultLauncher<Intent> lazarCamaradeFotosActivity = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        if (data != null){
+                            fotoSocioTomada = data.getExtras().getParcelable("data");
+                            socioImagen.setImageBitmap(fotoSocioTomada);
+                        }
+                    }
+                }
+            });
+    // FIN SOLUCION DEPRECATED DEL ActivityForResult
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Enlazamos las vistas con la parte lógica
         Button btnGuardar = findViewById(R.id.boton_guardar);
         EditText etNombre = findViewById(R.id.nombre_socio);
         EditText etApellido = findViewById(R.id.apellido_socio);
@@ -31,16 +55,19 @@ public class MainActivity extends AppCompatActivity {
         RatingBar rtBar = findViewById(R.id.ratingBar);
 
 
+
+
+
+
         // PARTE B: 1 - Creamos una variable de tipo Imagen
         socioImagen = findViewById(R.id.socio_imagen);
-        // PARTE B: 2 - Implementamos en onclickListener
-        socioImagen.setOnClickListener(v -> {
-            abrirCamara();
-        });
+        // PARTE B: 2 - Implementamos el onclickListener
+        socioImagen.setOnClickListener(v -> abrirCamara());
 
 
         btnGuardar.setOnClickListener(view -> {
 
+            // Obtenemos los campos introducidos en las vistas
             String nombreSocio = etNombre.getText().toString();
             String apellidoSocio = etApellido.getText().toString();
             String bioSocio = etBio.getText().toString();
@@ -48,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
             // 1 - Nos creamos el intent irDetalle
             Intent irDetalle = new Intent(this, DetailActivity.class);
-            // 2- Añadimos toda la información que queremos pasar al detalle Activity
+
+            // 2- Añadimos toda la información que queremos pasar al detailActivity
             // irDetalle.putExtra("nombreSocio",nombreSocio);
             // irDetalle.putExtra("apellidoSocio",apellidoSocio);
             // irDetalle.putExtra("bioSocio",bioSocio);
@@ -73,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void abrirCamara() {
         Intent camaraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(camaraIntent, 1000);
+        //startActivityForResult(camaraIntent, 1000);
+        lazarCamaradeFotosActivity.launch(camaraIntent);
     }
 
     @Override
