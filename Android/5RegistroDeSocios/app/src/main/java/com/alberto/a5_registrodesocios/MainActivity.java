@@ -104,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         //startActivityForResult(camaraIntent, 1000);
         lazarCamaradeFotosActivity.launch(camaraIntent);
     }
+/*
+    Este CODIGO YA NO ES NECESARIO 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -116,4 +118,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    */
+
 }
