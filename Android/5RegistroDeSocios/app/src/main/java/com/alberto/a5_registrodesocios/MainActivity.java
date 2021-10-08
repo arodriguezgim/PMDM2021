@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == Activity.RESULT_OK) {
-                        // There are no request codes
+                        // Comprobar que al volver de la camara tenemos foto
                         Intent data = result.getData();
                         if (data != null){
                             fotoSocioTomada = data.getExtras().getParcelable("data");
@@ -55,15 +55,10 @@ public class MainActivity extends AppCompatActivity {
         RatingBar rtBar = findViewById(R.id.ratingBar);
 
 
-
-
-
-
         // PARTE B: 1 - Creamos una variable de tipo Imagen
         socioImagen = findViewById(R.id.socio_imagen);
         // PARTE B: 2 - Implementamos el onclickListener
         socioImagen.setOnClickListener(v -> abrirCamara());
-
 
         btnGuardar.setOnClickListener(view -> {
 
@@ -91,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             );
             // 2b.2 Enviamos el objeto al intent
             irDetalle.putExtra("nuevoSocio",nuevoSocio);
+            irDetalle.putExtra("imagenSocio", fotoSocioTomada);
 
             // 3- Nos vamos al Detail Activity
             startActivity(irDetalle);
