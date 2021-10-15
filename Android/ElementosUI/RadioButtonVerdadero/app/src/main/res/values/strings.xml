@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">RadioButtonVerdadero</string>
+    <string name="radioButtonHombre">Hombre</string>
+    <string name="radioButtonMujer">Mujer</string>
+    <string name="radioButtonIndeterminado">No quiero decirlo</string>
+</resources>
