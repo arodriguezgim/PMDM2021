@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/pokemon_list_id_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="1"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/pokemon_list_name_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Boulbasour"
+        android:textStyle="bold"/>
+    <ImageView
+        android:id="@+id/pokemon_list_type_image"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/electric"
+        android:layout_weight="1"/>
+</LinearLayout>
