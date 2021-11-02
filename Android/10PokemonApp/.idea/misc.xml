@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Alberto/Desktop/Repositorio2122/PMDM2021/Android/10PokemonApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Alberto/Desktop/Repositorio2122/PMDM2021/Android/10PokemonApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Alberto/Desktop/Repositorio2122/PMDM2021/Android/10PokemonApp/app/src/main/res/layout/fragment_detail.xml" value="0.18386108273748722" />
+        <entry key="..\:/Users/Alberto/Desktop/Repositorio2122/PMDM2021/Android/10PokemonApp/app/src/main/res/layout/fragment_pokemon_list.xml" value="0.1875" />
         <entry key="..\:/Users/Alberto/Desktop/Repositorio2122/PMDM2021/Android/10PokemonApp/app/src/main/res/layout/item.xml" value="0.25" />
       </map>
     </option>

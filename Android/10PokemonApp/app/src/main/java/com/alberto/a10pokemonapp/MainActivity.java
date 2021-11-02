@@ -9,57 +9,56 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.alberto.a10pokemonapp.adapter.PokemonListAdapter;
+import com.alberto.a10pokemonapp.fragments.DetailFragment;
+import com.alberto.a10pokemonapp.interfaces.iComunicaFragments;
 import com.alberto.a10pokemonapp.model.Pokemon;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements iComunicaFragments {
 
-    private ListView lvPokemons;
-    private PokemonListAdapter adaptador;
-    private ArrayList<Pokemon> pokemonList = new ArrayList<>();
+    DetailFragment detalleFragmentPokemon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        lvPokemons = findViewById(R.id.pokemon_listView);
-
-        pokemonList.add(new Pokemon("1","Bulbasaur",Pokemon.Type.PLANT));
-        pokemonList.add(new Pokemon("2","IvySaur",Pokemon.Type.PLANT));
-        pokemonList.add(new Pokemon("3","VenuaSaur",Pokemon.Type.PLANT));
-        pokemonList.add(new Pokemon("4","Charmander",Pokemon.Type.FIRE));
-        pokemonList.add(new Pokemon("5","Charmeleon",Pokemon.Type.WATER));
-        pokemonList.add(new Pokemon("6","Charizard",Pokemon.Type.FIRE));
-        pokemonList.add(new Pokemon("7","Squirtle",Pokemon.Type.WATER));
-        pokemonList.add(new Pokemon("8","Blastoise",Pokemon.Type.ELECTRIC));
-        pokemonList.add(new Pokemon("25","Pikachu",Pokemon.Type.ELECTRIC));
-        pokemonList.add(new Pokemon("26","Raichu",Pokemon.Type.ELECTRIC));
-
-        adaptador = new PokemonListAdapter(this,pokemonList,R.id.item);
-        lvPokemons.setAdapter(adaptador);
-
-        lvPokemons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Pokemon selectedPokemon = (Pokemon) adaptador.getItem(position);
-                if (selectedPokemon != null){
-                    Toast.makeText(MainActivity.this,selectedPokemon.getNombre(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 
+    @Override
+    public void enviarPokemon(Pokemon pokemon) {
 
+        //Esta interfaz sirve como puente para comunicar los Fragments
+        // Toast.makeText(this, pokemon.getNombre(), Toast.LENGTH_SHORT).show();
 
+        // Aqui realiceramos toda la logica necesaria para poder realizar el envío
+        detalleFragmentPokemon = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.pokemon_detail_fragment);
+        detalleFragmentPokemon.setPokemonImage(pokemon.getImageId());
 
+        detalleFragmentPokemon.playPokemonSound(pokemon.getSoundId());
 
-
-
-
-
-
-
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
