@@ -89,16 +89,16 @@ public class PokemonListFragment extends Fragment {
         // 2 - A partir de este view vamos a obtener todos los views del Fragment
         lvPokemons = view.findViewById(R.id.pokemon_listView);
         // 3 - Traemos el resto de codigo del MainActivity
-        pokemonList.add(new Pokemon("1","Bulbasaur",R.drawable.bulbasaur, R.raw.bulbasaur, Pokemon.Type.PLANT));
-        pokemonList.add(new Pokemon("2","IvySaur",R.drawable.ivysaur,R.raw.ivysaur,Pokemon.Type.PLANT));
-        pokemonList.add(new Pokemon("3","VenuaSaur",R.drawable.venusaur,R.raw.venuasaur,Pokemon.Type.PLANT));
-        pokemonList.add(new Pokemon("4","Charmander",R.drawable.charmander,R.raw.charmander,Pokemon.Type.FIRE));
-        pokemonList.add(new Pokemon("5","Charmeleon",R.drawable.charmeleon,R.raw.charmeleon,Pokemon.Type.WATER));
-        pokemonList.add(new Pokemon("6","Charizard",R.drawable.charizard,R.raw.charizard,Pokemon.Type.FIRE));
-        pokemonList.add(new Pokemon("7","Squirtle",R.drawable.squirtle,R.raw.squirtle,Pokemon.Type.WATER));
-        pokemonList.add(new Pokemon("8","Blastoise",R.drawable.blastoise,R.raw.blastoise,Pokemon.Type.ELECTRIC));
-        pokemonList.add(new Pokemon("25","Pikachu",R.drawable.pikachu,R.raw.pikachu,Pokemon.Type.ELECTRIC));
-        pokemonList.add(new Pokemon("26","Raichu",R.drawable.raichu,R.raw.raichu,Pokemon.Type.ELECTRIC));
+        pokemonList.add(new Pokemon("1","Bulbasaur","https://cdn.alfabetajuega.com/wp-content/uploads/2020/03/bulbasaur-pok%C3%A9mon.png", R.raw.bulbasaur, Pokemon.Type.PLANT));
+        pokemonList.add(new Pokemon("2","IvySaur","https://cdn.alfabetajuega.com/wp-content/uploads/2020/03/bulbasaur-pok%C3%A9mon.png",R.raw.ivysaur,Pokemon.Type.PLANT));
+        pokemonList.add(new Pokemon("3","VenuaSaur","https://cdn.alfabetajuega.com/wp-content/uploads/2020/03/bulbasaur-pok%C3%A9mon.png",R.raw.venuasaur,Pokemon.Type.PLANT));
+        pokemonList.add(new Pokemon("4","Charmander","https://cdn2.bulbagarden.net/upload/thumb/9/96/Ash_Charmeleon_M20.png/250px-Ash_Charmeleon_M20.png",R.raw.charmander,Pokemon.Type.FIRE));
+        pokemonList.add(new Pokemon("5","Charmeleon","https://cdn2.bulbagarden.net/upload/thumb/9/96/Ash_Charmeleon_M20.png/250px-Ash_Charmeleon_M20.png",R.raw.charmeleon,Pokemon.Type.WATER));
+        pokemonList.add(new Pokemon("6","Charizard","https://pm1.narvii.com/6210/b5e60c3ebf647e90a773813c09cab8aab6825cbf_hq.jpg",R.raw.charizard,Pokemon.Type.FIRE));
+        pokemonList.add(new Pokemon("7","Squirtle","https://pbs.twimg.com/media/EYzE5w0WsAAR69L.jpg",R.raw.squirtle,Pokemon.Type.WATER));
+        pokemonList.add(new Pokemon("8","Blastoise","https://esports.eldesmarque.com/wp-content/uploads/2021/09/Blass.jpg",R.raw.blastoise,Pokemon.Type.ELECTRIC));
+        pokemonList.add(new Pokemon("25","Pikachu","https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2018/08/pikachu_4.jpg",R.raw.pikachu,Pokemon.Type.ELECTRIC));
+        pokemonList.add(new Pokemon("26","Raichu","https://www.egames.news/__export/1627425509127/sites/debate/img/2021/07/27/copia_de_egames_-_2021-07-27t163726_028.jpg_976912859.jpg",R.raw.raichu,Pokemon.Type.ELECTRIC));
         // 4 - Un contexto SIEMPRE va a depender de un Activity.
         // Cuando nos pida un contexto desde un fragment podemos obtenerlo con getActivity()
         adaptador = new PokemonListAdapter(getActivity(),pokemonList,R.id.item);

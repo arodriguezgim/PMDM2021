@@ -5,7 +5,8 @@ public class Pokemon {
     private String id;
     private String nombre;
     //Le pongo un entero porque contiene el id de la imagen
-    private int imageId;
+    //private int imageId;
+    private String imageUrl;
     private int soundId;
     private Type type;
 
@@ -13,10 +14,10 @@ public class Pokemon {
         FIRE, WATER, PLANT, ELECTRIC
     }
 
-    public Pokemon(String id, String nombre, int imageId, int soundId, Type type) {
+    public Pokemon(String id, String nombre, String imageUrl, int soundId, Type type) {
         this.id = id;
         this.nombre = nombre;
-        this.imageId = imageId;
+        this.imageUrl = imageUrl;
         this.soundId = soundId;
         this.type = type;
     }
@@ -25,8 +26,8 @@ public class Pokemon {
         return soundId;
     }
 
-    public int getImageId() {
-        return imageId;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public String getId() {

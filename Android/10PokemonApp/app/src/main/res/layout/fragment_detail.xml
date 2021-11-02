@@ -7,7 +7,6 @@
 
     <ImageView
         android:id="@+id/pokemon_detail_imageView"
-        android:src="@drawable/charmeleon"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:layout_width="match_parent"

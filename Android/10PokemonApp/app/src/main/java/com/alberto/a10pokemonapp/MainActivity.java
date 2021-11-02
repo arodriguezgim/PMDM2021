@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements iComunicaFragment
 
         // Aqui realiceramos toda la logica necesaria para poder realizar el envío
         detalleFragmentPokemon = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.pokemon_detail_fragment);
-        detalleFragmentPokemon.setPokemonImage(pokemon.getImageId());
+        detalleFragmentPokemon.setPokemonImage(pokemon.getImageUrl());
 
         detalleFragmentPokemon.playPokemonSound(pokemon.getSoundId());
 

@@ -6,12 +6,15 @@ import android.os.Bundle;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.alberto.a10pokemonapp.R;
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,9 +56,12 @@ public class DetailFragment extends Fragment {
         return fragment;
     }
 
-    public void setPokemonImage(int pokemonImageId){
+    public void setPokemonImage(String pokemonUrl){
         // Establecemos la imagen que queremos poner en el detalle Fragment
-        detailImageView.setImageDrawable(ContextCompat.getDrawable(getActivity(),pokemonImageId));
+        // detailImageView.setImageDrawable(ContextCompat.getDrawable(getActivity(),pokemonImageId));
+        Log.i("POKEMON","LA URL del Pokemon es: " + pokemonUrl);
+        // Picasso.get().load(pokemonUrl).into(detailImageView);
+        Glide.with(this).load(pokemonUrl).into(detailImageView);
     }
 
     public void playPokemonSound(int pokemonSoundId){
