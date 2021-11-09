@@ -8,6 +8,8 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".RestauranteFragment"
     tools:listitem="@layout/fragment_restaurante" />
