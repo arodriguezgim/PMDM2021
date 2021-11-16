@@ -1,4 +1,4 @@
-package com.alberto.a15cartapizzeria;
+package com.alberto.a16_pokefit;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,7 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
+import com.alberto.a16_pokefit.model.Pokemon;
+import com.alberto.a16_pokefit.model.PokemonRespuesta;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,25 +25,24 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class PizzaFragment extends Fragment {
+public class PokemonFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 1;
+    private int mColumnCount = 3;
 
     RecyclerView recyclerView;
-    MyPizzaRecyclerViewAdapter adaptadorPizzas;
-    List<Pizza> pizzasList;
+    MyPokemonRecyclerViewAdapter adaptador;
     Retrofit retrofit;
-    public static final String BASE_URL = "https://private-3cc5a4-codingpizza.apiary-mock.com";
 
-    public PizzaFragment() {
+    public PokemonFragment() {
     }
 
+    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static PizzaFragment newInstance(int columnCount) {
-        PizzaFragment fragment = new PizzaFragment();
+    public static PokemonFragment newInstance(int columnCount) {
+        PokemonFragment fragment = new PokemonFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -59,7 +61,7 @@ public class PizzaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pizza_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_pokemon_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -70,37 +72,42 @@ public class PizzaFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            // 1 - Uso RETROFIT para obtener la Lista de Pizzas
+
+            //EMPIEZA LA FIESTA
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl("https://pokeapi.co/api/v2/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-            // 2 - LLamo a obtenerListaPizzas para obtener la Lista de Pizzas
-            obtenerListaPizzas(retrofit, context);
+            obtenerDatos(retrofit,context);
+
+            //recyclerView.setAdapter(adaptador);
         }
         return view;
     }
 
-    private void obtenerListaPizzas(Retrofit retrofit, Context context) {
+    private void obtenerDatos(Retrofit retrofit, Context context) {
+        PokemonService service = retrofit.create(PokemonService.class);
+        Call<PokemonRespuesta> pokemonRespuestaCall = service.obtenerListaPokemon();
 
-        PizzaService pizzaService = retrofit.create(PizzaService.class);
-        Call<List<Pizza>> pizzaList = pizzaService.obtenerPizzas();
-
-        pizzaList.enqueue(new Callback<List<Pizza>>() {
+        pokemonRespuestaCall.enqueue(new Callback<PokemonRespuesta>() {
             @Override
-            public void onResponse(Call<List<Pizza>> call, Response<List<Pizza>> response) {
+            public void onResponse(Call<PokemonRespuesta> call, Response<PokemonRespuesta> response) {
                 if (response.isSuccessful()){
-                    adaptadorPizzas = new MyPizzaRecyclerViewAdapter( response.body(), context );
-                    recyclerView.setAdapter(adaptadorPizzas);
-                } else {
-                    Log.e("PIZZA","onResponse: Llamada fallida en onResponse");
-                }
+                    PokemonRespuesta pokemonRespuesta = response.body();
+                    //PokemonRespuesta es una clase que nosotros creamos
+                    // y que tiene un arraylist en Java con el listado de los objetos Pokemon
+                    ArrayList<Pokemon> listaPokemon = pokemonRespuesta.getResults();
 
+                    adaptador = new MyPokemonRecyclerViewAdapter(listaPokemon, context);
+                    recyclerView.setAdapter(adaptador);
+                } else {
+                    Log.e("POKEMON","onResponse: " + response.body());
+                }
             }
 
             @Override
-            public void onFailure(Call<List<Pizza>> call, Throwable t) {
-                Log.e("PIZZA","onFailure: Llamada fallida en onFailure");
+            public void onFailure(Call<PokemonRespuesta> call, Throwable t) {
+                Log.e("POKEMON","onFailure: " + t.getMessage());
             }
         });
     }
