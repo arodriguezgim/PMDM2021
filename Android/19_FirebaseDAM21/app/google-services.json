@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "396174173353",
+    "project_id": "fir-dam21alberto",
+    "storage_bucket": "fir-dam21alberto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396174173353:android:cce223293230855bf375b8",
+        "android_client_info": {
+          "package_name": "com.alberto.a19_firebasedam21"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396174173353-gm4bv1b8omiq4un91f62936h9ap5703i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNQFPUhEjAqUdlNmlNMYsK_tbdEAylDr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "396174173353-gm4bv1b8omiq4un91f62936h9ap5703i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
