@@ -9,6 +9,7 @@
     tools:context=".LoginActivity">
 
     <LinearLayout
+        android:id="@+id/authLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -71,6 +72,21 @@
                 android:backgroundTint="@color/ambar_firebase"
                 android:text="Login" />
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
+        <Button
+            android:id="@+id/loginGoogleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:drawableStart="@drawable/google"
+            android:text="Sign In con Google"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,5 +44,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     // Firebase Authentication
     implementation 'com.google.firebase:firebase-auth'
+    // Firebase Authentication con Google
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+    // Firebase Clud Messaging
+    implementation 'com.google.firebase:firebase-messaging'
+    // Firebase Remote Config
+    implementation 'com.google.firebase:firebase-config'
 
 }
