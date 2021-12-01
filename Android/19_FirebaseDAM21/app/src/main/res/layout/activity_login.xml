@@ -81,11 +81,12 @@
             android:id="@+id/loginGoogleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:drawableStart="@drawable/google"
-            android:text="Sign In con Google"
+            android:background="@color/white"
+            android:drawableStart="@mipmap/google"
+            android:paddingStart="16dp"
+            android:text="Login con Google"
             android:textAlignment="textStart"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
