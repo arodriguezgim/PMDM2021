@@ -1,29 +1,44 @@
 package com.alberto.a19_firebasedam21;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
     TextView tvemail, tvmetodo;
-    Button logOut, errorButton;
+    EditText direccionET, telefonoET;
+    Button logOut, errorButton, guardarButton, recuperarButton, borrarButton;
     boolean mostrarBotonError;
     // Remote Config
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
+    // Firestorage
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +48,11 @@ public class HomeActivity extends AppCompatActivity {
         tvmetodo = findViewById(R.id.metodoTextView);
         logOut = findViewById(R.id.logoutButton);
         errorButton = findViewById(R.id.errorButton);
+        guardarButton = findViewById(R.id.guardarButton);
+        recuperarButton = findViewById(R.id.recuperrarButton);
+        borrarButton = findViewById(R.id.borrarButton);
+        direccionET = findViewById(R.id.addressTextView);
+        telefonoET = findViewById(R.id.tfnoTextView);
 
         errorButton.setVisibility(View.INVISIBLE);
         //Recuperamos los datos del LoginActivity
@@ -74,6 +94,55 @@ public class HomeActivity extends AppCompatActivity {
 
         tvemail.setText(email);
         tvmetodo.setText(metodo);
+
+        // Firestorage
+        db = FirebaseFirestore.getInstance();
+
+        guardarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Obtenemos los datos del usuario actualizados
+                Map<String, Object> usuario = new HashMap<>();
+                usuario.put("email", email);
+                usuario.put("metodo",metodo);
+                usuario.put("direccion", direccionET.getText().toString() );
+                usuario.put("telefono", telefonoET.getText().toString() );
+
+                db.collection("usuarios").document(email).set(usuario);
+            }
+        });
+
+        //CLICK EN RECUPERAR
+        recuperarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.collection("usuarios")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        direccionET.setText(document.getString("direccion"));
+                                        telefonoET.setText(document.getString("telefono"));
+                                    }
+                                } else {
+                                    Log.w("TAG", "Error getting documents.", task.getException());
+                                }
+                            }
+                        });
+            }
+        });
+
+
+
+        borrarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                db.collection("usuarios").document(email).delete();
+            }
+        });
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override

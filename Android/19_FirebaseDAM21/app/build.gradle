@@ -39,7 +39,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // Import the Firebase BoM
-    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+    implementation platform('com.google.firebase:firebase-bom:26.1.0')
     //Firebase SDK for Google Analytics
     implementation 'com.google.firebase:firebase-analytics'
     // Firebase Authentication
@@ -50,5 +50,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging'
     // Firebase Remote Config
     implementation 'com.google.firebase:firebase-config'
+    // Firebase
+    implementation 'com.google.firebase:firebase-firestore'
 
 }
