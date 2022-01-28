@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
 
-  static const Color primary = Colors.pink;
+  static const Color primary = Colors.blue;
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
         primaryColor: primary,
@@ -16,6 +16,21 @@ class AppTheme {
         // Estilo de los TextButton
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(primary: primary)
+        ),
+
+        //FloatingActionButtons
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: primary,
+          elevation: 5
+        ),
+
+        // ElevatedButtons
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: primary,
+            elevation: 0,
+            shape: const StadiumBorder( )
+          )
         ),
 
         // Estilo de los iconos
