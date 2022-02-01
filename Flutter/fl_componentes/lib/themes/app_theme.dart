@@ -1,8 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class AppTheme {
 
-  static const Color primary = Colors.blue;
+  static const Color primary = Colors.orange;
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
         primaryColor: primary,
@@ -31,6 +33,32 @@ class AppTheme {
             elevation: 0,
             shape: const StadiumBorder( )
           )
+        ),
+
+        // Estilo de los inputs
+        inputDecorationTheme: const InputDecorationTheme(
+          floatingLabelStyle: TextStyle( color: primary ),
+          border: OutlineInputBorder(
+                    borderSide: BorderSide(color: primary),
+                    borderRadius: BorderRadius.only( 
+                      bottomLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      )
+                    ),
+          enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primary),
+                    borderRadius: BorderRadius.only( 
+                      bottomLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      )
+                    ),
+          focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primary),
+                    borderRadius: BorderRadius.only( 
+                      bottomLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      )
+                    )
         ),
 
         // Estilo de los iconos
