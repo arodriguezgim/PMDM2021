@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fl_componentes">
    <application
+        android:usesCleartextTraffic="true"
         android:label="fl_componentes"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
