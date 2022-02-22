@@ -11,6 +11,14 @@ public class EnemyPatrol : MonoBehaviour
     public float waitingTime = 2f;
 
     private GameObject _target;
+    //Me creo la referencia al objeto Animator
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +62,8 @@ public class EnemyPatrol : MonoBehaviour
         //La corrutina moverá al enemigo
         while(Vector2.Distance(transform.position, _target.transform.position) > 0.05f)
         {
+            // Actualizamos el Animator
+            _animator.SetBool("Idle", false);
             // Moveremos el enemigo
             Vector2 direction = _target.transform.position - transform.position;
             float xDirection = direction.x;
@@ -64,6 +74,10 @@ public class EnemyPatrol : MonoBehaviour
 
         // En este punto hemos alcanzado el objetivo
         Debug.Log("Objetivo alcanzado");
+        // Actualizar el animator
+        _animator.SetBool("Idle", true);
+        // Disparamos
+        _animator.SetTrigger("Shoot");
         yield return new WaitForSeconds(waitingTime);
 
         // Una vez hemos esperado, restauraremos el comportamiento
