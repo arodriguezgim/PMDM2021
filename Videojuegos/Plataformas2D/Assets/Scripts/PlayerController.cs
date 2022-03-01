@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float longTimeIdle = 5f;
     //Velocidad del jugador
     public float speed = 2.5f;
+    public float jumpForce = 2.5f;
 
     
     public Transform groundCheck; // Será desde donde chequearemos el suelo
@@ -16,10 +18,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Animator _animator;
 
+    // Long Idle
+    private float _longIdleTimer; //Contador de tiempo
+
     // Movimiento
     private Vector2 _movement;
     private bool _facingRight = true;
     private bool _enSuelo; //Me dirá si estoy o no en el suelo
+
+    // Ataque
+    private bool _isAttacking; // Necesito saber cuando ataca para no atacar cuando se esté atacando.
 
     void Awake()
     {
@@ -52,6 +60,20 @@ public class PlayerController : MonoBehaviour
 
         // estamos en el Suelo????
         _enSuelo = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadious, groundLayer);
+
+        // estamos saltando?
+        if ( Input.GetButtonDown("Jump") && _enSuelo == true && _isAttacking == false)
+        {
+            _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+
+        // Estamos Atacando?
+        if ( Input.GetButtonDown("Fire1") && _enSuelo == true && _isAttacking == false)
+        {
+            _movement = Vector2.zero; // Detengo al personaje
+            _rigidbody.velocity = Vector2.zero;
+            _animator.SetTrigger("Attack");
+        }
     }
 
     //FixedUpdate es el metodo idoneo para mover cualquier objeto físico
@@ -63,7 +85,33 @@ public class PlayerController : MonoBehaviour
     // LateUpdate es el metodo donde conviene controlar todas las animaciones
     void LateUpdate()
     {
-        _animator.SetBool("Idle", _movement == Vector2.zero);  
+        _animator.SetBool("Idle", _movement == Vector2.zero);
+        _animator.SetBool("isGrounded", _enSuelo);
+        _animator.SetFloat("VerticalVelocity", _rigidbody.velocity.y);
+
+        // Animator
+        // Me devuelve el estado actual, y le pregunto si estoy atacando
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        {
+            _isAttacking = true;
+        } else
+        {
+            _isAttacking = false;
+        }
+
+        // Long Idle
+        if ( _animator.GetCurrentAnimatorStateInfo(0).IsTag("Idle"))
+        {
+            _longIdleTimer += Time.deltaTime;
+            if (_longIdleTimer >= longTimeIdle)
+            {
+                _animator.SetTrigger("LongIdle");
+            } 
+        }
+        else
+        {
+            _longIdleTimer = 0f;
+        }
     }
 
     private void Flip()
